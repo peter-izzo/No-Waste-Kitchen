@@ -1,16 +1,24 @@
+var edemamKey = '2da4dada354bb264573b3cc442d33d59';
+var edemamID = 'ecb6e209';
+var mealDBKey = '9973533';
+
+//
+var ingredients = "eggs"
+var meal = "Frosted%20Flakes"
 
 //API Keys and URLs for APIs
-var mealDbURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}'
+var mealDbURL = `https://www.themealdb.com/api/json/v2/${mealDBKey}/filter.php?i=${ingredients}`;
+var edemamURL = `https://api.edamam.com/api/nutrition-data?app_id=${edemamID}&app_key=${edemamKey}&ingr=${meal}`;
 
-var edemamKey = '2da4dada354bb264573b3cc442d33d59';
 
-var ingredient = "macaroni"
 
-//test call to the meal db. Updating later with API key so 
-//we can search recipes based on 2+ items
+
 $.ajax({
-    url: mealDbURL,
+    url: edemamURL,
     method: "GET"
   }).then(function (resp) {
       console.log(resp);
   });
+
+
+
