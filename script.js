@@ -26,8 +26,3 @@ $(".submit").click(function() {
 })
 
 
-
-
-
-
-
