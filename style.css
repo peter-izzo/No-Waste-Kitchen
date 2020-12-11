@@ -1,0 +1,49 @@
+p.section-description {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.75rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: whitesmoke;
+  border-top: whitesmoke solid 0.25rem;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.header {
+  background-color: #426D49;
+}
+
+.fridgeItems {
+  background-color: whitesmoke;
+  padding-top: 3rem;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centeredBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+label {
+  text-align: center;
+}
+
+.ingredientList {
+  text-align: center;
+}
