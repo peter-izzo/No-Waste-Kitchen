@@ -35,16 +35,27 @@ form {
 
 h1 {
   text-align: center;
+  font-weight: 700;
 }
 
 h3 {
   text-align: center;
+  font-weight: 700;
 }
 
 label {
   text-align: center;
+  font-weight: 600;
 }
 
 .ingredientList {
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+.recipeResults {
   text-align: center;
 }
