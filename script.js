@@ -71,6 +71,8 @@ $(".submit").click(function() {
         method: "GET",
         timeout: 1000
       }).then(function (resp) {
+
+        //loop should call 3 meals at somepoint
           for (let i = 0; i < 4; i++) {
               console.log(mealDbURL);
               $(".recipe-choice").html("<p>" + resp.meals[i].strMeal + "</p>");
