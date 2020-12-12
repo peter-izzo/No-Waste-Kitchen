@@ -24,6 +24,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  clear: both;
 }
 
 .centeredBtn {
@@ -46,4 +47,8 @@ label {
 
 .ingredientList {
   text-align: center;
+}
+
+.button-primary {
+  clear: both;
 }
