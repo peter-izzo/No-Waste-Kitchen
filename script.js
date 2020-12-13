@@ -9,7 +9,7 @@ var meal;
 
 // ***API Keys and URLs for APIs ***
 
-// Used for nutritian facts
+// Used for nutrition facts
 var edemamURL = `https://api.edamam.com/api/nutrition-data?app_id=${edemamID}&app_key=${edemamKey}&ingr=${meal}`;
 
 // Gives more details about the meal than the above API
