@@ -1,3 +1,4 @@
+
 p.section-description {
   text-align: center;
   font-weight: 500;
@@ -64,4 +65,13 @@ textarea {
 
 .ingredients{
   border: 2px solid black;
+=======
+.ingredients{
+    border: 2px solid black;
+}
+
+.submit{
+    background: rgb(201, 195, 195);
+    padding: .25em;
+
 }
