@@ -60,12 +60,13 @@ function testAPI2(){
 }
 
 //on click of button finds recipes for things you have some ingredients for
-$(".submit").click(function() {
+$(".submit").click(function(e) {
     // Finds Meals based on ingredients in fridge
+    e.preventDefault();
     ingredients = $(".ingredients").val();
     var mealDbURL = `${mealDBPrefix}/filter.php?i=${ingredients}`;
-    console.log(ingredients);
-    console.log(mealDbURL);
+    // console.log(ingredients);
+    // console.log(mealDbURL);
     $.ajax({
         url: mealDbURL,
         method: "GET",
