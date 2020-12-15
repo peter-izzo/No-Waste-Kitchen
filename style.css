@@ -1,0 +1,77 @@
+
+p.section-description {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.75rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: whitesmoke;
+  border-top: whitesmoke solid 0.25rem;
+}
+
+body {
+  background-color: whitesmoke;
+  background-image: url(./images/tileable_wood_texture_@2X.png);
+}
+
+.header {
+  background-color: #426D49;
+}
+
+.fridgeItems {
+  background-color: whitesmoke;
+  padding-top: 3rem;
+  background-image: url(./images/tileable_wood_texture_@2X.png);
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clear: both;
+}
+
+.centeredBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 700;
+}
+
+h3 {
+  text-align: center;
+  font-weight: 700;
+}
+
+label {
+  text-align: center;
+  font-weight: 600;
+}
+
+.ingredientList {
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+.recipeResults {
+  text-align: center;
+}
+
+.ingredients{
+  border: 2px solid black;
+=======
+.ingredients{
+    border: 2px solid black;
+}
+
+.submit{
+    background: rgb(201, 195, 195);
+    padding: .25em;
+
+}
