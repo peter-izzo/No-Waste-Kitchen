@@ -20,7 +20,7 @@ Please make sure to update tests as appropriate.
 
 ## Contributors
 
-Peter Izzo, Mike Helson, Adriana Valdiglesias & William O'Brien
+Peter Izzo, Mike Helson & Adriana Valdiglesias
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
