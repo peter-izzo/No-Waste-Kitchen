@@ -25,11 +25,11 @@ function callOne(mealDbURL) {
       })
 }
 
-
-function callTwo(){
+//This should return more detailed info on recipe
+function callTwo(test){
     return $.ajax({
-        type: "GET",
         url: test,
+        method: "GET"
     })
 }
 
@@ -41,16 +41,18 @@ async function handleSubmit() {
 
     var resp = await callOne(mealDbURL);
 
-    console.log(resp);
+
+    var resp2 = await callTwo(test);
+
+    console.log(resp2);
 
 
-
-    // var resp2 = await testAPI2();
     for (let i = 0; i < 3; i++) {
 
             /**
              * /////////////////
              * FIRST CALL
+             *  **WORKS**
              * /////////////////
              */
         
@@ -60,18 +62,90 @@ async function handleSubmit() {
             let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
             img.addClass([i+1])
             $("#recipe-cards").append(img);
-            meal = resp.meals[i].strMeal.replace(' ', '%20');
+            meal = resp.meals[i].strMeal.replaceAll(' ', '%20');
             console.log(meal);
   
             //url for a single meal 
             test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
-            console.log(resp);
 
+
+            //test returns the correct address as expected
+            console.log(test);
+
+            //this DOESNT do what I expected; returns a strange object
+            callTwo(test);
+            console.log(callTwo(test));
             /**
              * This sends over all the important 
              * details of a single meal
              */
-          //   testAPI2(resp);
+
+             //this returns null meals. Not sure why since address is correct
+            console.log(resp2);
+            // console.log(resp2.meals[0]);
+
+
+        /**
+         * //////////////////
+         * SECOND CALL
+         * //////////////////
+         */
+
+
+          /**
+         * I've gotten the api to send over the first 3
+         * recipes and ingredients with this loop.
+         * Cannot figure out how to seperate them
+         * though. I want the description and ingredients to
+         * fall under their respective picture
+         */
+        // for (let index = 0; index < 3; index++) {
+        //     let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
+        //     $(".meal-description").html(foobar);
+        //     const element = resp2.meals[index];
+        //     //console.log(element.strIngredient+[i]);
+        //     // for("strIngredient"+i in element){
+        //     //     console.log();
+        //     // }
+
+        //     // Empty arrays to store ingredients/measurements in
+        //     var ingredientsArray = [];
+        //     var measurementsArray = [];
+        //     for (const property in element) {
+        //         if (element[property]?.length) {
+        //             if (property.includes("strIngredient")) {
+        //                 console.log(element[property].length);
+        //                 ingredientsArray.push(element[property]);
+        //                 // $(".ingredients").html("<li>"+element[property]+"</li>")
+        //             }
+        //             if (property.includes("strMeasure")) {
+        //                 console.log(element[property]);
+        //                 measurementsArray.push(element[property]);
+        //                 // $(".ingredients li").append(element[property]+"</li>")
+        //             }
+        //         }// console.log(`${property}: ${element[property]}`);
+
+        //     }
+        //     for (let i = 0; i < ingredientsArray.length; i++) {
+                
+        //         console.log(ingredientsArray[i]);
+        //         console.log(measurementsArray[i]);
+        //         var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
+        //         $(".meal-description").append(ingredientsList);
+        //     }
+
+        //     /**
+        //      * Empty arrays after each iteration of the
+        //      * starting loop. This way it populates seperate
+        //      * ingredients/measurement lists for each
+        //      */
+        //     ingredientsArray = [];
+        //     measurementsArray = [];
+        // }
+
+
+
+
 
 
           // $.ajax({
@@ -135,63 +209,7 @@ async function handleSubmit() {
               
           // })
 
-        /**
-         * //////////////////
-         * SECOND CALL
-         * //////////////////
-         */
-
-
-          /**
-         * I've gotten the api to send over the first 3
-         * recipes and ingredients with this loop.
-         * Cannot figure out how to seperate them
-         * though. I want the description and ingredients to
-         * fall under their respective picture
-         */
-        // for (let index = 0; index < 3; index++) {
-        //     let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
-        //     $(".meal-description").html(foobar);
-        //     const element = resp2.meals[index];
-        //     //console.log(element.strIngredient+[i]);
-        //     // for("strIngredient"+i in element){
-        //     //     console.log();
-        //     // }
-
-        //     // Empty arrays to store ingredients/measurements in
-        //     var ingredientsArray = [];
-        //     var measurementsArray = [];
-        //     for (const property in element) {
-        //         if (element[property]?.length) {
-        //             if (property.includes("strIngredient")) {
-        //                 console.log(element[property].length);
-        //                 ingredientsArray.push(element[property]);
-        //                 // $(".ingredients").html("<li>"+element[property]+"</li>")
-        //             }
-        //             if (property.includes("strMeasure")) {
-        //                 console.log(element[property]);
-        //                 measurementsArray.push(element[property]);
-        //                 // $(".ingredients li").append(element[property]+"</li>")
-        //             }
-        //         }// console.log(`${property}: ${element[property]}`);
-
-        //     }
-        //     for (let i = 0; i < ingredientsArray.length; i++) {
-                
-        //         console.log(ingredientsArray[i]);
-        //         console.log(measurementsArray[i]);
-        //         var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
-        //         $(".meal-description").append(ingredientsList);
-        //     }
-
-        //     /**
-        //      * Empty arrays after each iteration of the
-        //      * starting loop. This way it populates seperate
-        //      * ingredients/measurement lists for each
-        //      */
-        //     ingredientsArray = [];
-        //     measurementsArray = [];
-        // }
+        
   
         
 
