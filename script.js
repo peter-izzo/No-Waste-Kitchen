@@ -17,166 +17,193 @@ var edemamURL = `${edemamID}&app_key=${edemamKey}&ingr=${meal}`;
 var test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
 
 //this function calls the api for a single meal showing all the ingredients and how to make it
-function testAPI2(){
-    $.ajax({
+
+function callOne(mealDbURL) {
+    return $.ajax({
+        url: mealDbURL,
+        method: "GET"
+      })
+}
+
+
+function callTwo(){
+    return $.ajax({
         type: "GET",
         url: test,
-    }).then(function (resp2) {
+    })
+}
+
+// On click of button finds recipes for things you have some ingredients for
+async function handleSubmit() {
+
+    ingredients = $(".ingredients").val();
+    var mealDbURL = `${mealDBPrefix}/filter.php?i=${ingredients}`;
+
+    var resp = await callOne(mealDbURL);
+
+    console.log(resp);
+
+
+
+    // var resp2 = await testAPI2();
+    for (let i = 0; i < 3; i++) {
+
+            /**
+             * /////////////////
+             * FIRST CALL
+             * /////////////////
+             */
+        
+            console.log(mealDbURL);
+            $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
+            console.log(resp.meals[1].strMeal);
+            let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
+            img.addClass([i+1])
+            $("#recipe-cards").append(img);
+            meal = resp.meals[i].strMeal.replace(' ', '%20');
+            console.log(meal);
+  
+            //url for a single meal 
+            test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
+            console.log(resp);
+
+            /**
+             * This sends over all the important 
+             * details of a single meal
+             */
+          //   testAPI2(resp);
+
+
+          // $.ajax({
+          //     type: "GET",
+          //     url: test,
+          //     async: false
+          // }).then(function (resp2) {
+          //     console.log("second call");
+          //     /**
+          //      * I've gotten the api to send over the first 3
+          //      * recipes and ingredients with this loop.
+          //      * Cannot figure out how to seperate them
+          //      * though. I want the description and ingredients to
+          //      * fall under their respective picture
+          //      */
+          //     for (let index = 0; index < 3; index++) {
+          //         let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
+          //         $("#recipe-cards").append(foobar);
+          //         const element = resp2.meals[index];
+          //         //console.log(element.strIngredient+[i]);
+          //         // for("strIngredient"+i in element){
+          //         //     console.log();
+          //         // }
+      
+          //         // Empty arrays to store ingredients/measurements in
+          //         var ingredientsArray = [];
+          //         var measurementsArray = [];
+          //         for (const property in element) {
+          //             if (element[property]?.length) {
+          //                 if (property.includes("strIngredient")) {
+          //                     console.log(element[property].length);
+          //                     ingredientsArray.push(element[property]);
+          //                     // $(".ingredients").html("<li>"+element[property]+"</li>")
+          //                 }
+          //                 if (property.includes("strMeasure")) {
+          //                     console.log(element[property]);
+          //                     measurementsArray.push(element[property]);
+          //                     // $(".ingredients li").append(element[property]+"</li>")
+          //                 }
+          //             }// console.log(`${property}: ${element[property]}`);
+      
+          //         }
+          //         for (let i = 0; i < ingredientsArray.length; i++) {
+                      
+          //             console.log(ingredientsArray[i]);
+          //             console.log(measurementsArray[i]);
+          //             var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
+          //             $("#recipe-cards").append(ingredientsList);
+          //         }
+      
+          //         /**
+          //          * Empty arrays after each iteration of the
+          //          * starting loop. This way it populates seperate
+          //          * ingredients/measurement lists for each
+          //          */
+          //         ingredientsArray = [];
+          //         measurementsArray = [];
+          //     }
+              
+                  
+              
+          // })
 
         /**
+         * //////////////////
+         * SECOND CALL
+         * //////////////////
+         */
+
+
+          /**
          * I've gotten the api to send over the first 3
          * recipes and ingredients with this loop.
          * Cannot figure out how to seperate them
          * though. I want the description and ingredients to
          * fall under their respective picture
          */
-        for (let index = 0; index < 3; index++) {
-            let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
-            $(".meal-description").html(foobar);
-            const element = resp2.meals[index];
-            //console.log(element.strIngredient+[i]);
-            // for("strIngredient"+i in element){
-            //     console.log();
-            // }
+        // for (let index = 0; index < 3; index++) {
+        //     let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
+        //     $(".meal-description").html(foobar);
+        //     const element = resp2.meals[index];
+        //     //console.log(element.strIngredient+[i]);
+        //     // for("strIngredient"+i in element){
+        //     //     console.log();
+        //     // }
 
-            // Empty arrays to store ingredients/measurements in
-            var ingredientsArray = [];
-            var measurementsArray = [];
-            for (const property in element) {
-                if (element[property]?.length) {
-                    if (property.includes("strIngredient")) {
-                        console.log(element[property].length);
-                        ingredientsArray.push(element[property]);
-                        // $(".ingredients").html("<li>"+element[property]+"</li>")
-                    }
-                    if (property.includes("strMeasure")) {
-                        console.log(element[property]);
-                        measurementsArray.push(element[property]);
-                        // $(".ingredients li").append(element[property]+"</li>")
-                    }
-                }// console.log(`${property}: ${element[property]}`);
+        //     // Empty arrays to store ingredients/measurements in
+        //     var ingredientsArray = [];
+        //     var measurementsArray = [];
+        //     for (const property in element) {
+        //         if (element[property]?.length) {
+        //             if (property.includes("strIngredient")) {
+        //                 console.log(element[property].length);
+        //                 ingredientsArray.push(element[property]);
+        //                 // $(".ingredients").html("<li>"+element[property]+"</li>")
+        //             }
+        //             if (property.includes("strMeasure")) {
+        //                 console.log(element[property]);
+        //                 measurementsArray.push(element[property]);
+        //                 // $(".ingredients li").append(element[property]+"</li>")
+        //             }
+        //         }// console.log(`${property}: ${element[property]}`);
 
-            }
-            for (let i = 0; i < ingredientsArray.length; i++) {
+        //     }
+        //     for (let i = 0; i < ingredientsArray.length; i++) {
                 
-                console.log(ingredientsArray[i]);
-                console.log(measurementsArray[i]);
-                var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
-                $(".meal-description").append(ingredientsList);
-            }
+        //         console.log(ingredientsArray[i]);
+        //         console.log(measurementsArray[i]);
+        //         var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
+        //         $(".meal-description").append(ingredientsList);
+        //     }
 
-            /**
-             * Empty arrays after each iteration of the
-             * starting loop. This way it populates seperate
-             * ingredients/measurement lists for each
-             */
-            ingredientsArray = [];
-            measurementsArray = [];
-        }
+        //     /**
+        //      * Empty arrays after each iteration of the
+        //      * starting loop. This way it populates seperate
+        //      * ingredients/measurement lists for each
+        //      */
+        //     ingredientsArray = [];
+        //     measurementsArray = [];
+        // }
+  
         
-            
-        
-    })
+
+    }
+
 }
-
-// On click of button finds recipes for things you have some ingredients for
-
 $("#searchForm").submit(function(e) {
-    // Finds Meals based on ingredients in fridge
     e.preventDefault();
-    ingredients = $(".ingredients").val();
-    var mealDbURL = `${mealDBPrefix}/filter.php?i=${ingredients}`;
+    handleSubmit(e);
+    // Finds Meals based on ingredients in fridge
     // console.log(ingredients);
     // console.log(mealDbURL);
+});
 
-    $.ajax({
-        url: mealDbURL,
-        method: "GET",
-        timeout: 1000
-      }).then(function (resp) {
-        //loop sends first 3 meals
-        $("#recipe-cards").empty();
-          for (let i = 0; i < 3; i++) {
-              console.log(mealDbURL);
-              $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
-              console.log(resp.meals[1].strMeal);
-              let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
-              img.addClass([i+1])
-              $("#recipe-cards").append(img);
-              meal = resp.meals[i].strMeal.replace(' ', '%20');
-              console.log(meal);
     
-              //url for a single meal 
-              test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
-              console.log(resp);
-
-              /**
-               * This sends over all the important 
-               * details of a single meal
-               */
-            //   testAPI2(resp);
-
-
-              $.ajax({
-                type: "GET",
-                url: test,
-            }).then(function (resp2) {
-        
-                /**
-                 * I've gotten the api to send over the first 3
-                 * recipes and ingredients with this loop.
-                 * Cannot figure out how to seperate them
-                 * though. I want the description and ingredients to
-                 * fall under their respective picture
-                 */
-                for (let index = 0; index < 3; index++) {
-                    let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
-                    $("#recipe-cards").append(foobar);
-                    const element = resp2.meals[index];
-                    //console.log(element.strIngredient+[i]);
-                    // for("strIngredient"+i in element){
-                    //     console.log();
-                    // }
-        
-                    // Empty arrays to store ingredients/measurements in
-                    var ingredientsArray = [];
-                    var measurementsArray = [];
-                    for (const property in element) {
-                        if (element[property]?.length) {
-                            if (property.includes("strIngredient")) {
-                                console.log(element[property].length);
-                                ingredientsArray.push(element[property]);
-                                // $(".ingredients").html("<li>"+element[property]+"</li>")
-                            }
-                            if (property.includes("strMeasure")) {
-                                console.log(element[property]);
-                                measurementsArray.push(element[property]);
-                                // $(".ingredients li").append(element[property]+"</li>")
-                            }
-                        }// console.log(`${property}: ${element[property]}`);
-        
-                    }
-                    for (let i = 0; i < ingredientsArray.length; i++) {
-                        
-                        console.log(ingredientsArray[i]);
-                        console.log(measurementsArray[i]);
-                        var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
-                        $("#recipe-cards").append(ingredientsList);
-                    }
-        
-                    /**
-                     * Empty arrays after each iteration of the
-                     * starting loop. This way it populates seperate
-                     * ingredients/measurement lists for each
-                     */
-                    ingredientsArray = [];
-                    measurementsArray = [];
-                }
-                
-                    
-                
-            })
-    
-          }
-      });
-})
