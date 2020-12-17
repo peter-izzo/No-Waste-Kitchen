@@ -58,7 +58,6 @@ async function handleSubmit() {
              */
         
             $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
-            // console.log(resp.meals[1].strMeal);
             let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
             img.addClass([i+1])
             $("#recipe-cards").append(img);
@@ -80,28 +79,20 @@ async function handleSubmit() {
             console.log(test);
 
             /**
-             * This sends over all the important 
-             * details of a single meal
+             
              */
-
-             //this returns null meals. Not sure why since address is correct
-            // console.log(resp2);
-            // // console.log(resp2.meals[0]);
-            // console.log(resp2.meals[0]);
 
             /**
              * //////////////////
-             * SECOND CALL
+             *  ****SECOND CALL****
+             * This sends over all the important 
+             * details of a single meal
              * //////////////////
              */
             let foobar = "<p>" + resp2.meals[0].strInstructions + "</p>";
             $("#recipe-cards").append(foobar);
             const element = resp2.meals[0];
             console.log(element);
-            //console.log(element.strIngredient+[i]);
-            // for("strIngredient"+i in element){
-            //     console.log();
-            // }
 
 
             var ingredientsTitle = $("<h2>").text("Ingredients");
@@ -116,14 +107,12 @@ async function handleSubmit() {
                     if (property.includes("strIngredient")) {
                         console.log(element[property].length);
                         ingredientsArray.push(element[property]);
-                        // $(".ingredients").html("<li>"+element[property]+"</li>")
                     }
                     if (property.includes("strMeasure")) {
                         console.log(element[property]);
                         measurementsArray.push(element[property]);
-                        // $(".ingredients li").append(element[property]+"</li>")
                     }
-                }// console.log(`${property}: ${element[property]}`);
+                }
 
             }
             for (let i = 0; i < ingredientsArray.length; i++) {
@@ -141,86 +130,16 @@ async function handleSubmit() {
              */
             ingredientsArray = [];
             measurementsArray = [];
-
-
-
-
-
-          // $.ajax({
-          //     type: "GET",
-          //     url: test,
-          //     async: false
-          // }).then(function (resp2) {
-          //     console.log("second call");
-          //     /**
-          //      * I've gotten the api to send over the first 3
-          //      * recipes and ingredients with this loop.
-          //      * Cannot figure out how to seperate them
-          //      * though. I want the description and ingredients to
-          //      * fall under their respective picture
-          //      */
-          //     for (let index = 0; index < 3; index++) {
-          //         let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
-          //         $("#recipe-cards").append(foobar);
-          //         const element = resp2.meals[index];
-          //         //console.log(element.strIngredient+[i]);
-          //         // for("strIngredient"+i in element){
-          //         //     console.log();
-          //         // }
-      
-          //         // Empty arrays to store ingredients/measurements in
-          //         var ingredientsArray = [];
-          //         var measurementsArray = [];
-          //         for (const property in element) {
-          //             if (element[property]?.length) {
-          //                 if (property.includes("strIngredient")) {
-          //                     console.log(element[property].length);
-          //                     ingredientsArray.push(element[property]);
-          //                     // $(".ingredients").html("<li>"+element[property]+"</li>")
-          //                 }
-          //                 if (property.includes("strMeasure")) {
-          //                     console.log(element[property]);
-          //                     measurementsArray.push(element[property]);
-          //                     // $(".ingredients li").append(element[property]+"</li>")
-          //                 }
-          //             }// console.log(`${property}: ${element[property]}`);
-      
-          //         }
-          //         for (let i = 0; i < ingredientsArray.length; i++) {
-                      
-          //             console.log(ingredientsArray[i]);
-          //             console.log(measurementsArray[i]);
-          //             var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
-          //             $("#recipe-cards").append(ingredientsList);
-          //         }
-      
-          //         /**
-          //          * Empty arrays after each iteration of the
-          //          * starting loop. This way it populates seperate
-          //          * ingredients/measurement lists for each
-          //          */
-          //         ingredientsArray = [];
-          //         measurementsArray = [];
-          //     }
-              
-                  
-              
-          // })
-
-        
-  
         
 
     }
 
 }
 $("#searchForm").submit(function(e) {
+    //empty out recipe cards so page doesn't become endless
     $("#recipe-cards").empty();
     e.preventDefault();
     handleSubmit(e);
-    // Finds Meals based on ingredients in fridge
-    // console.log(ingredients);
-    // console.log(mealDbURL);
 });
 
     
