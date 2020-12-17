@@ -16,13 +16,19 @@ The application will then generate up to 3 recipes for the user to choose from, 
 
 As well, there will be nutritional information listed for each recipe.
 [Deployed Website](https://adrianavv1.github.io/No-Waste-Kitchen/)
-## Screenshot
+## Mock up 
+![Img](https://github.com/adrianavv1/No-Waste-Kitchen/blob/main/images%2F0001.jpg)
+[Balsamiq](https://balsamiq.com/)
+## App Images
 ![Img-1](https://github.com/adrianavv1/No-Waste-Kitchen/blob/e1090eab069239f9c33a9c5d465d757012a356e6/images%2FScreenshot%202020-12-17%20103557.png)
 
 
-
-
-
+## Library, Frameworks & Tools
+* Framework- Skeleton
+* Javascript
+* Library: JQuery
+* APIs: [TheMealDB](https://www.themealdb.com/api.php) & 
+        [EDAMAM](https://developer.edamam.com/edamam-docs-nutrition-api)
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
