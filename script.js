@@ -78,6 +78,8 @@ async function handleSubmit() {
             * given to callTwo.
             * Must also be defined after first meal is set or the count
             * will be off
+            * Same for resp 3 since the meal needs to be defined
+            * and changed a bit for edemam
             * /////////////////////////
             */
             var resp2 = await callTwo(meal);
@@ -112,11 +114,9 @@ async function handleSubmit() {
             for (const property in element) {
                 if (element[property]?.length) {
                     if (property.includes("strIngredient")) {
-                        // console.log(element[property].length);
                         ingredientsArray.push(element[property]);
                     }
                     if (property.includes("strMeasure")) {
-                        // console.log(element[property]);
                         measurementsArray.push(element[property]);
                     }
                 }
@@ -124,8 +124,6 @@ async function handleSubmit() {
             }
             for (let i = 0; i < ingredientsArray.length; i++) {
                 
-                // console.log(ingredientsArray[i]);
-                // console.log(measurementsArray[i]);
                 var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
                 $("#recipe-cards").append(ingredientsList);
             }
@@ -137,6 +135,14 @@ async function handleSubmit() {
              */
             ingredientsArray = [];
             measurementsArray = [];
+
+            /**
+             * /////////////////
+             *  ****THIRD CALL***** 
+             * /////////////////
+             *  Add any edemam stuff here so it displays
+             *  after the ingredients
+             */
 
             $("#recipe-cards").append(nutritianFacts);
 
