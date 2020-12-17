@@ -21,6 +21,8 @@ As well, there will be nutritional information listed for each recipe.
 [Balsamiq](https://balsamiq.com/)
 ## App Images
 ![Img-1](https://github.com/adrianavv1/No-Waste-Kitchen/blob/e1090eab069239f9c33a9c5d465d757012a356e6/images%2FScreenshot%202020-12-17%20103557.png)
+![Img-2](https://github.com/peter-izzo/No-Waste-Kitchen/blob/main/images%2FScreenshot%202020-12-17%20154351.png)
+1[Img-3](https://github.com/peter-izzo/No-Waste-Kitchen/blob/main/images%2FScreenshot%202020-12-17%20154440.png)
 
 
 ## Library, Frameworks & Tools
