@@ -10,7 +10,7 @@ var edemamMeal;
 // ***API Keys and URLs for APIs ***
 
 
-// Used for nutritian facts
+// Used for nutrition facts
 var edemamURL = `${edemamID}&app_key=${edemamKey}&ingr=${edemamMeal}`;
 
 // Gives more details about the meal than the above API
@@ -68,9 +68,9 @@ async function handleSubmit() {
             img.addClass([i+1])
             $("#recipe-cards").append(img);
             meal = resp.meals[i].strMeal.replaceAll(' ', '%20');
-            console.log(meal);
+            // console.log(meal);
             edemamMeal = "1%20" + meal;
-            console.log(edemamMeal);
+            // console.log(edemamMeal);
 
             /**
              * ////////////////////////
@@ -98,13 +98,11 @@ async function handleSubmit() {
             let foobar = "<p>" + resp2.meals[0].strInstructions + "</p>";
             $("#recipe-cards").append(foobar);
             const element = resp2.meals[0];
-            console.log(element);
+            // console.log(element);
 
 
             var ingredientsTitle = $("<h2>").text("Ingredients");
             ingredientsTitle.addClass("ingredients");
-            var nutritianFacts = $("<div>").html("<h3>Nutritional Facts</h3>");
-            nutritianFacts.addClass("nutritian");
             $("#recipe-cards").append(ingredientsTitle);
 
 
@@ -143,13 +141,92 @@ async function handleSubmit() {
              *  Add any edemam stuff here so it displays
              *  after the ingredients
              */
+            var nutritionFacts = $("<div>").html("<h3>Nutritional Facts</h3>");
+            nutritionFacts.addClass("nutrition");
 
-            $("#recipe-cards").append(nutritianFacts);
+            
+
+            $("#recipe-cards").append(nutritionFacts);
+
+            
 
             /**
-             * NUTRITIAN INFO VARIABLES
+             * nutrition INFO VARIABLES
              */
+
+            //function return size of an object
+            // We're using this to find how big the 
+            // totalDaily object is so we can loop through it
+            Object.size = function(obj) {
+                var size = 0, key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) size++;
+                }
+                return size;
+            };
+            
+            var totalDaily = resp3.totalDaily;
+            // Get the size of an totalDaily
+            var size = Object.size(resp3.totalDaily);
+            console.log(size);
+
+
+            /**
+             * Reusing part of function
+             *  from above
+             * to store total daily info
+             */
+            var typeArray = [];
+            var percentArray = [];
+
+
+            //if size is bigger than 0
+            //put total daily info into arrays to be 
+            //pumped onto page
+            if (size > 0) {
+                for (const prop in totalDaily) {
+                    typeArray.push(`${totalDaily[prop].label}`);
+                    percentArray.push(`${totalDaily[prop].quantity.toFixed(2)}`);
+                    // console.log(`${totalDaily[prop].label}: ${totalDaily[prop].quantity}`);
+                } 
+
+                for (let item = 0; item < typeArray.length; item++) {
+
+                    var table = $("<table>").addClass("the-facts u-full-width");
+                    var firstRow = $("<tr>").addClass("first-row");
+                    var nutritionDesc = $("<th>").text("Type(energy in cals): ");
+                    var nutritionDescTwo = $("<th>").text("Daily %: ");
+
+                    $(".nutrition").append(table);
+                    table.append(firstRow);
+                    firstRow.append(nutritionDesc, nutritionDescTwo);
+                    
+                    //Nutrition info displayed to page
+                    typeRow = $("<td>").text(typeArray[item]);
+                    percentRow = $("<td>").text(percentArray[item]);
+                    table.append(typeRow);
+                    typeRow.before($("<tr>"));
+                    typeRow.after($("</tr>"));
+                    table.append(percentRow);
+                }
         
+                    /**
+                     * Empty arrays after each iteration of the
+                     * starting loop. This way it populates seperate
+                     * ingredients/measurement lists for each
+                     */
+                    ingredientsArray = [];
+                    measurementsArray = [];
+                
+            } else {
+                var noInfo = $("<h3>").text("Not enough data to display nutrition information");
+                nutritionFacts.after(noInfo);
+            }
+
+            console.log(typeArray);
+            console.log(percentArray);
+
+
 
     }
 
