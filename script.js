@@ -11,7 +11,7 @@ var edemamMeal;
 
 
 // Used for nutritian facts
-var edemamURL = `${edemamID}&app_key=${edemamKey}&ingr=${meal}`;
+var edemamURL = `${edemamID}&app_key=${edemamKey}&ingr=${edemamMeal}`;
 
 // Gives more details about the meal than the above API
 var test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
@@ -33,6 +33,13 @@ function callTwo(meal){
     })
 }
 
+function callThree(edemamMeal){
+    return $.ajax({
+        url: `${edemamID}&app_key=${edemamKey}&ingr=${edemamMeal}`,
+        method: "GET"
+    })
+}
+
 // On click of button finds recipes for things you have some ingredients for
 async function handleSubmit() {
 
@@ -40,7 +47,6 @@ async function handleSubmit() {
     var mealDbURL = `${mealDBPrefix}/filter.php?i=${ingredients}`;
 
     var resp = await callOne(mealDbURL);
-
 
 
     console.log(resp2);
@@ -62,6 +68,9 @@ async function handleSubmit() {
             img.addClass([i+1])
             $("#recipe-cards").append(img);
             meal = resp.meals[i].strMeal.replaceAll(' ', '%20');
+            console.log(meal);
+            edemamMeal = "1%20" + meal;
+            console.log(edemamMeal);
 
             /**
              * ////////////////////////
@@ -73,14 +82,9 @@ async function handleSubmit() {
             */
             var resp2 = await callTwo(meal);
             console.log(meal);
+            var resp3 = await callThree(meal)
+            console.log(resp3);
 
-
-            //test returns the correct address as expected
-            console.log(test);
-
-            /**
-             
-             */
 
             /**
              * //////////////////
@@ -96,8 +100,11 @@ async function handleSubmit() {
 
 
             var ingredientsTitle = $("<h2>").text("Ingredients");
-            ingredientsTitle.addClass("ingredients")
+            ingredientsTitle.addClass("ingredients");
+            var nutritianFacts = $("<div>").html("<h3>Nutritional Facts</h3>");
+            nutritianFacts.addClass("nutritian");
             $("#recipe-cards").append(ingredientsTitle);
+
 
             // Empty arrays to store ingredients/measurements in
             var ingredientsArray = [];
@@ -105,11 +112,11 @@ async function handleSubmit() {
             for (const property in element) {
                 if (element[property]?.length) {
                     if (property.includes("strIngredient")) {
-                        console.log(element[property].length);
+                        // console.log(element[property].length);
                         ingredientsArray.push(element[property]);
                     }
                     if (property.includes("strMeasure")) {
-                        console.log(element[property]);
+                        // console.log(element[property]);
                         measurementsArray.push(element[property]);
                     }
                 }
@@ -117,8 +124,8 @@ async function handleSubmit() {
             }
             for (let i = 0; i < ingredientsArray.length; i++) {
                 
-                console.log(ingredientsArray[i]);
-                console.log(measurementsArray[i]);
+                // console.log(ingredientsArray[i]);
+                // console.log(measurementsArray[i]);
                 var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
                 $("#recipe-cards").append(ingredientsList);
             }
@@ -130,6 +137,12 @@ async function handleSubmit() {
              */
             ingredientsArray = [];
             measurementsArray = [];
+
+            $("#recipe-cards").append(nutritianFacts);
+
+            /**
+             * NUTRITIAN INFO VARIABLES
+             */
         
 
     }
