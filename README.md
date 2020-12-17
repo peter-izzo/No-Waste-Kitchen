@@ -17,7 +17,7 @@ The application will then generate up to 3 recipes for the user to choose from, 
 As well, there will be nutritional information listed for each recipe.
 [Deployed Website](https://adrianavv1.github.io/No-Waste-Kitchen/)
 ## Screenshot
-![Img-1](No-Waste-Kitchen\images\Screenshot 2020-12-17 103557.png)
+![Img-1](https://github.com/adrianavv1/No-Waste-Kitchen/blob/e1090eab069239f9c33a9c5d465d757012a356e6/images%2FScreenshot%202020-12-17%20103557.png)
 
 
 
