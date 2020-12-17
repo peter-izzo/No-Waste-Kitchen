@@ -15,8 +15,9 @@ From there, the user just clicks the "Find me a recipe" button.
 The application will then generate up to 3 recipes for the user to choose from, as well as a description and ingredient list for each.
 
 As well, there will be nutritional information listed for each recipe.
-
+[Deployed Website](https://adrianavv1.github.io/No-Waste-Kitchen/)
 ## Screenshot
+![Img-1](No-Waste-Kitchen\images\Screenshot 2020-12-17 103557.png)
 
 
 
