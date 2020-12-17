@@ -58,7 +58,7 @@ async function handleSubmit() {
              */
         
             $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
-            console.log(resp.meals[1].strMeal);
+            // console.log(resp.meals[1].strMeal);
             let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
             img.addClass([i+1])
             $("#recipe-cards").append(img);
@@ -215,6 +215,7 @@ async function handleSubmit() {
 
 }
 $("#searchForm").submit(function(e) {
+    $("#recipe-cards").empty();
     e.preventDefault();
     handleSubmit(e);
     // Finds Meals based on ingredients in fridge
