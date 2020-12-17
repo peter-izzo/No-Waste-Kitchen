@@ -6,6 +6,15 @@ Sometimes we have ingredients in our home that we don't know what to do with. We
 ## Installation
 No need to install anything at this time. 
 
+## Usage
+
+To start, the user enters the ingredients they want to cook with in the textbox below the header "Fridge Items".
+
+From there, the user just clicks the "Find me a recipe" button.
+
+The application will then generate up to 3 recipes for the user to choose from, as well as a description and ingredient list for each.
+
+As well, there will be nutritional information listed for each recipe.
 
 ## Screenshot
 
@@ -20,7 +29,14 @@ Please make sure to update tests as appropriate.
 
 ## Contributors
 
-Peter Izzo, Mike Helson & Adriana Valdiglesias
+Peter Izzo, Mike Henson & Adriana Valdiglesias
+
+## Code of Conduct
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)  
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
+&copy; 2020 Pete Izzo, Adriana Valdiglesias, and Mike Henson
+
+Licensed under the [MIT](LICENSE.txt) license.
