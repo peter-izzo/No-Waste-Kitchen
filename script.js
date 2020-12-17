@@ -26,9 +26,9 @@ function callOne(mealDbURL) {
 }
 
 //This should return more detailed info on recipe
-function callTwo(test){
+function callTwo(meal){
     return $.ajax({
-        url: test,
+        url: `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`,
         method: "GET"
     })
 }
@@ -42,12 +42,16 @@ async function handleSubmit() {
     var resp = await callOne(mealDbURL);
 
 
-    var resp2 = await callTwo(test);
 
     console.log(resp2);
 
 
     for (let i = 0; i < 3; i++) {
+
+        /**
+         * resp2 must be defined in the loop or the meal value is never given * to callTwo.
+         */
+        var resp2 = await callTwo(meal);
 
             /**
              * /////////////////
@@ -55,8 +59,8 @@ async function handleSubmit() {
              *  **WORKS**
              * /////////////////
              */
+            console.log(resp2);
         
-            console.log(mealDbURL);
             $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
             console.log(resp.meals[1].strMeal);
             let img = $("<img>").attr("src", resp.meals[i].strMealThumb);
@@ -64,7 +68,7 @@ async function handleSubmit() {
             $("#recipe-cards").append(img);
             meal = resp.meals[i].strMeal.replaceAll(' ', '%20');
             console.log(meal);
-  
+            console.log(resp2);
             //url for a single meal 
             test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
 
@@ -73,8 +77,7 @@ async function handleSubmit() {
             console.log(test);
 
             //this DOESNT do what I expected; returns a strange object
-            callTwo(test);
-            console.log(callTwo(test));
+            callTwo(meal);
             /**
              * This sends over all the important 
              * details of a single meal
