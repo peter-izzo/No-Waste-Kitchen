@@ -26,7 +26,7 @@ As well, there will be nutritional information listed for each recipe.
 ![Img-2](https://github.com/peter-izzo/No-Waste-Kitchen/blob/main/images%2FScreenshot%202020-12-17%20154351.png)
 
 
-![Img-3](https://github.com/peter-izzo/No-Waste-Kitchen/blob/e1090eab069239f9c33a9c5d465d757012a356e6/images%2FScreenshot%202020-12-17%20103557.png)
+![Img-3](https://github.com/peter-izzo/No-Waste-Kitchen/blob/790834d1b2bdc627b31bceeed18f313edd630195/images%2FScreenshot%202020-12-17%20154440.png)
 
 
 ## Library, Frameworks & Tools
