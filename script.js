@@ -48,10 +48,7 @@ async function handleSubmit() {
 
     for (let i = 0; i < 3; i++) {
 
-        /**
-         * resp2 must be defined in the loop or the meal value is never given * to callTwo.
-         */
-        var resp2 = await callTwo(meal);
+        
 
             /**
              * /////////////////
@@ -59,7 +56,6 @@ async function handleSubmit() {
              *  **WORKS**
              * /////////////////
              */
-            console.log(resp2);
         
             $("#recipe-cards").append($("<h1>").text(resp.meals[i].strMeal));
             console.log(resp.meals[1].strMeal);
@@ -67,85 +63,84 @@ async function handleSubmit() {
             img.addClass([i+1])
             $("#recipe-cards").append(img);
             meal = resp.meals[i].strMeal.replaceAll(' ', '%20');
+
+            /**
+             * ////////////////////////
+            * resp2 must be defined in the loop or the meal value is never 
+            * given to callTwo.
+            * Must also be defined after first meal is set or the count
+            * will be off
+            * /////////////////////////
+            */
+            var resp2 = await callTwo(meal);
             console.log(meal);
-            console.log(resp2);
-            //url for a single meal 
-            test = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
 
 
             //test returns the correct address as expected
             console.log(test);
 
-            //this DOESNT do what I expected; returns a strange object
-            callTwo(meal);
             /**
              * This sends over all the important 
              * details of a single meal
              */
 
              //this returns null meals. Not sure why since address is correct
-            console.log(resp2);
+            // console.log(resp2);
+            // // console.log(resp2.meals[0]);
             // console.log(resp2.meals[0]);
 
+            /**
+             * //////////////////
+             * SECOND CALL
+             * //////////////////
+             */
+            let foobar = "<p>" + resp2.meals[0].strInstructions + "</p>";
+            $("#recipe-cards").append(foobar);
+            const element = resp2.meals[0];
+            console.log(element);
+            //console.log(element.strIngredient+[i]);
+            // for("strIngredient"+i in element){
+            //     console.log();
+            // }
 
-        /**
-         * //////////////////
-         * SECOND CALL
-         * //////////////////
-         */
 
+            var ingredientsTitle = $("<h2>").text("Ingredients");
+            ingredientsTitle.addClass("ingredients")
+            $("#recipe-cards").append(ingredientsTitle);
 
-          /**
-         * I've gotten the api to send over the first 3
-         * recipes and ingredients with this loop.
-         * Cannot figure out how to seperate them
-         * though. I want the description and ingredients to
-         * fall under their respective picture
-         */
-        // for (let index = 0; index < 3; index++) {
-        //     let foobar = "<p>" + resp2.meals[index].strInstructions + "</p>";
-        //     $(".meal-description").html(foobar);
-        //     const element = resp2.meals[index];
-        //     //console.log(element.strIngredient+[i]);
-        //     // for("strIngredient"+i in element){
-        //     //     console.log();
-        //     // }
+            // Empty arrays to store ingredients/measurements in
+            var ingredientsArray = [];
+            var measurementsArray = [];
+            for (const property in element) {
+                if (element[property]?.length) {
+                    if (property.includes("strIngredient")) {
+                        console.log(element[property].length);
+                        ingredientsArray.push(element[property]);
+                        // $(".ingredients").html("<li>"+element[property]+"</li>")
+                    }
+                    if (property.includes("strMeasure")) {
+                        console.log(element[property]);
+                        measurementsArray.push(element[property]);
+                        // $(".ingredients li").append(element[property]+"</li>")
+                    }
+                }// console.log(`${property}: ${element[property]}`);
 
-        //     // Empty arrays to store ingredients/measurements in
-        //     var ingredientsArray = [];
-        //     var measurementsArray = [];
-        //     for (const property in element) {
-        //         if (element[property]?.length) {
-        //             if (property.includes("strIngredient")) {
-        //                 console.log(element[property].length);
-        //                 ingredientsArray.push(element[property]);
-        //                 // $(".ingredients").html("<li>"+element[property]+"</li>")
-        //             }
-        //             if (property.includes("strMeasure")) {
-        //                 console.log(element[property]);
-        //                 measurementsArray.push(element[property]);
-        //                 // $(".ingredients li").append(element[property]+"</li>")
-        //             }
-        //         }// console.log(`${property}: ${element[property]}`);
-
-        //     }
-        //     for (let i = 0; i < ingredientsArray.length; i++) {
+            }
+            for (let i = 0; i < ingredientsArray.length; i++) {
                 
-        //         console.log(ingredientsArray[i]);
-        //         console.log(measurementsArray[i]);
-        //         var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
-        //         $(".meal-description").append(ingredientsList);
-        //     }
+                console.log(ingredientsArray[i]);
+                console.log(measurementsArray[i]);
+                var ingredientsList = $("<li>").text(`${ingredientsArray[i]}: ${measurementsArray[i]}`)
+                $("#recipe-cards").append(ingredientsList);
+            }
 
-        //     /**
-        //      * Empty arrays after each iteration of the
-        //      * starting loop. This way it populates seperate
-        //      * ingredients/measurement lists for each
-        //      */
-        //     ingredientsArray = [];
-        //     measurementsArray = [];
-        // }
-
+            /**
+             * Empty arrays after each iteration of the
+             * starting loop. This way it populates seperate
+             * ingredients/measurement lists for each
+             */
+            ingredientsArray = [];
+            measurementsArray = [];
 
 
 

@@ -64,9 +64,6 @@ textarea {
 }
 
 .ingredients{
-  border: 2px solid black;
-=======
-.ingredients{
     border: 2px solid black;
 }
 
@@ -74,4 +71,17 @@ textarea {
     background: rgb(201, 195, 195);
     padding: .25em;
 
+}
+
+li{
+  list-style: none;
+  font-weight: 600;
+}
+
+li:before {
+  content: "\f2e7"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
 }
