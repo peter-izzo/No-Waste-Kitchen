@@ -95,7 +95,7 @@ async function handleSubmit() {
              * details of a single meal
              * //////////////////
              */
-            let foobar = "<p>" + resp2.meals[0].strInstructions + "</p>";
+            let foobar = "<p class='meal-description'>" + resp2.meals[0].strInstructions + "</p>";
             $("#recipe-cards").append(foobar);
             const element = resp2.meals[0];
             // console.log(element);
