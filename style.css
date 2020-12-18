@@ -89,3 +89,8 @@ li:before {
 img {
   max-width: 70%;
 }
+
+.meal-description {
+  border: 0.2rem solid black;
+  background-color: white;
+}
